@@ -1,77 +1,88 @@
 #include<stdio.h>
-#include<process.h>
-int q[5];
-int front=-1,rear=-1;
-
-
-int isFull()
+#include<conio.h>
+#include<stdlib.h>
+int q[5],e;
+int front=-1;
+int rear=-1;
+int isFull()   //fuction to check if queue is full
 {
-    if(rear==4)
+    if (front==0 && rear==4)
     {
         return 1;
     }
     else
+    {
         return 0;
+    }
 }
 
-
-int isEmpty()
+int isEmpty()          // function for checking whether queue is empty or not
 {
-    if(front==-1)
+    if(front==-1 && rear ==-1)
     {
-       return 1;
+        return 1;
     }
     else
-       return 0;
+    {
+        return 0;
+    }
 }
 
-
-
-void enq(int e)         //function for inserting element in queue
+void neq(int e)    //function for inserting element in queue
 {
-   if(isFull()==1)
-   {
-       printf("Queue is full\n");
-   }
-   else
-   {
-       rear=rear+1;
-       q[rear]=e;
-       if(front==-1)
-       {
-           front=0;
-       }
-   }
+    if(isFull()==1)
+    {
+        printf("Queue is full\n");
+        
+    }
+    else
+    {
+         rear=rear+1;
+         q[rear]=e;
+         if(front==-1)
+         {
+             front=0;
+         }
+      
+    }
 }
 
-
-int deq()
+int deq()      //function for deleting element from queue
 {
-    int e;
+    int n;
     if(isEmpty()==1)
     {
-        printf("Queue is empty\n");
-        exit (0);
+        printf("queue is empty\n");
+        return ;
     }
     else
     {
-        e=q[front];
         if(front==rear)
         {
+            e=q[front];
             front=-1;
             rear=-1;
         }
         else
-        {
-            front=front+1;
+        { 
+            printf(" Enter 1 for deleting from front or enter 2 deleting from last\n");
+            scanf("%d",&n);
+            if(n==2)
+            {
+            e=q[rear];
+            rear=rear-1;
+            }
+            else
+            {
+             e=q[front];
+             front=front+1;
+            }
         }
     }
     return e;
 }
- 
 
-
-void display()
+void display()                //function for diplaying queue
 {
     int i;
     if(isEmpty()==1)
@@ -88,9 +99,11 @@ void display()
       }
     }
 }
+
+
 int main()
 {
-    int i,e;
+     int i,e;
     while(1)
     {
        printf("Queue operations\n");
@@ -104,7 +117,7 @@ int main()
             case 1:
                   printf("Enter a number\n");
                   scanf("%d",&e);
-                  enq(e);
+                  neq(e);
                   break;
 
             case 2:
